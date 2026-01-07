@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的日本之旅 - 福岡行程</title>
+    <!-- 引入 Google Fonts 提升質感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --sidebar-color: #1c1c1e;
+            --card-bg: #1e1e20;
+            --accent-gold: #c5a059;
+            --text-main: #ffffff;
+            --text-secondary: #a1a1a6;
+            --tip-bg: #2c2416;
+            --tip-border: #d49a3d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- 左側導覽列 --- */
+        .sidebar {
+            width: 80px;
+            background-color: var(--sidebar-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .nav-day {
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .nav-date {
+            font-size: 10px;
+            opacity: 0.7;
+        }
+
+        /* --- 右側內容區 --- */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            padding-bottom: 80px;
+            scroll-behavior: smooth;
+        }
+
+        .top-info {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        /* 標籤小按鈕 */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tag::before {
+            content: "👍";
+            margin-right: 4px;
+            font-size: 12px;
+        }
+
+        /* 導遊小撇步 */
+        .tip-box {
+            background-color: var(--tip-bg);
+            border-left: 4px solid var(--tip-border);
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+        }
+
+        .tip-title {
+            color: var(--tip-border);
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-content {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ececec;
+        }
+
+        /* 天氣區塊 */
+        .weather-section {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .weather-card {
+            background: var(--card-bg);
+            min-width: 90px;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .weather-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .weather-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .weather-temp {
+            font-weight: bold;
+        }
+
+        /* 時間軸線 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            border: 3px solid var(--bg-color);
+        }
+
+        .time {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .event-title {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 針對手機端的優化 */
+        @media (max-width: 380px) {
+            .sidebar { width: 70px; }
+            h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 左側導航 -->
+    <nav class="sidebar">
+        <div class="nav-item active">
+            <div class="nav-icon">✈️</div>
+            <div class="nav-day">Day 1</div>
+            <div class="nav-date">2/20</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">⛩️</div>
+            <div class="nav-day">Day 2</div>
+            <div class="nav-date">2/21</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🚗</div>
+            <div class="nav-day">Day 3</div>
+            <div class="nav-date">2/22</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🏔️</div>
+            <div class="nav-day">Day 4</div>
+            <div class="nav-date">2/23</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🏛️</div>
+            <div class="nav-day">Day 5</div>
+            <div class="nav-date">2/24</div>
+        </div>
+    </nav>
+
+    <!-- 右側內容區 -->
+    <main class="content">
+        <div class="top-info">Day 1 · 2/20 (五)</div>
+        <h1>福岡 · 屋台之夜</h1>
+        
+        <p class="description">
+            抵達福岡，感受九州門戶的繁華。夜晚一定要去中洲屋台，體驗在河畔小攤吃拉麵的獨特氛圍。
+        </p>
+
+        <div class="tag-container">
+            <div class="tag">必吃：豚骨拉麵</div>
+            <div class="tag">必吃：明太子</div>
+            <div class="tag">必吃：關東煮</div>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 導遊小撇步：</div>
+            <div class="tip-content">
+                福岡屋台大多「只收現金」，請準備好零錢。機場搭地鐵到博多站只要 5 分鐘，非常方便！
+            </div>
+        </div>
+
+        <!-- 天氣資訊區 -->
+        <div class="weather-section">
+            <div class="weather-card">
+                <div class="weather-date">12/3</div>
+                <div class="weather-icon">🌦️</div>
+                <div class="weather-temp">15°</div>
+            </div>
+            <div class="weather-card">
+                <div class="weather-date">12/4</div>
+                <div class="weather-icon">☁️</div>
+                <div class="weather-temp">10°</div>
+            </div>
+            <div class="weather-card">
+                <div class="weather-date">12/5</div>
+                <div class="weather-icon">🌙</div>
+                <div class="weather-temp">7°</div>
+            </div>
+        </div>
+
+        <!-- 行程時間軸 -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="time">15:25</div>
+                <div class="event-title">高雄起飛 (虎航 IT270)</div>
+                <div class="btn-group">
+                    <button class="action-btn">📍 導航</button>
+                    <button class="action-btn">🔗 官網</button>
+                    <button class="action-btn">🎫 憑證</button>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="time">18:55</div>
+                <div class="event-title">抵達福岡機場</div>
+                <div class="btn-group">
+                    <button class="action-btn">📍 導航</button>
+                    <button class="action-btn">🔗 官網</button>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot" style="background: #555;"></div>
+                <div class="time">20:30</div>
+                <div class="event-title">中洲屋台散策</div>
+                <p style="color:var(--text-secondary); font-size: 13px;">推薦店家：一龍拉麵、小金ちゃん</p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
