@@ -15,6 +15,7 @@
             --text-secondary: #a1a1a6;
             --tip-bg: #2c2416;
             --tip-border: #d49a3d;
+            --btn-blue: #007aff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
@@ -54,7 +55,6 @@
         }
 
         .nav-item:hover { color: var(--accent-gold); background: rgba(255,255,255,0.05); }
-
         .nav-icon { font-size: 20px; margin-bottom: 4px; }
         .nav-day { font-size: 11px; font-weight: bold; }
 
@@ -73,6 +73,32 @@
             margin-bottom: 50px;
         }
 
+        /* 工具箱區塊 */
+        .toolbox {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .tool-card span { font-size: 24px; margin-bottom: 8px; }
+        .tool-card p { font-size: 13px; font-weight: 500; }
+        .tool-card small { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
         .top-info {
             display: inline-block;
             background: rgba(255,255,255,0.1);
@@ -86,7 +112,6 @@
         h1 { font-size: 26px; margin-bottom: 16px; letter-spacing: 1px; }
         .description { color: var(--text-secondary); line-height: 1.6; font-size: 15px; margin-bottom: 24px; }
 
-        /* 時間軸樣式 */
         .timeline { position: relative; padding-left: 30px; border-left: 2px solid rgba(255,255,255,0.1); margin-left: 7px; }
         .timeline-item { position: relative; margin-bottom: 30px; padding-left: 20px; }
         .timeline-dot { position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; background: var(--accent-gold); border-radius: 50%; border: 3px solid var(--bg-color); }
@@ -94,7 +119,7 @@
         .time { font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--accent-gold); }
         .event-title { font-size: 17px; font-weight: bold; margin-bottom: 8px; }
 
-        .btn-group { display: flex; gap: 8px; margin-top: 10px; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
         .action-link {
             text-decoration: none;
             background: rgba(255,255,255,0.1);
@@ -116,6 +141,9 @@
 <body>
 
     <nav class="sidebar">
+        <a href="#tools" class="nav-item">
+            <div class="nav-icon">🛠️</div><div class="nav-day">工具</div>
+        </a>
         <a href="#day1" class="nav-item">
             <div class="nav-icon">🏨</div><div class="nav-day">Day 1</div>
         </a>
@@ -137,6 +165,34 @@
     </nav>
 
     <main class="content">
+        <section id="tools" class="day-section" style="min-height: auto;">
+            <div class="top-info">Travel Toolbox</div>
+            <h1>即時工具箱</h1>
+            
+            <div class="toolbox">
+                <a href="https://www.google.com/search?q=名古屋+天氣" target="_blank" class="tool-card">
+                    <span>☀️</span>
+                    <p>名古屋天氣</p>
+                    <small>Google 預報</small>
+                </a>
+                <a href="https://www.google.com/search?q=大阪+天氣" target="_blank" class="tool-card">
+                    <span>🌦️</span>
+                    <p>大阪天氣</p>
+                    <small>Google 預報</small>
+                </a>
+                <a href="https://www.google.com/search?q=JPY+to+TWD" target="_blank" class="tool-card">
+                    <span>💴</span>
+                    <p>日幣匯率</p>
+                    <small>1 JPY ➔ TWD</small>
+                </a>
+                <a href="https://vjw-lp.digital.go.jp/zh-hant/" target="_blank" class="tool-card">
+                    <span>📱</span>
+                    <p>Visit Japan</p>
+                    <small>入境審查 QR</small>
+                </a>
+            </div>
+        </section>
+
         <section id="day1" class="day-section">
             <div class="top-info">Day 1</div>
             <h1>抵達名古屋</h1>
@@ -152,87 +208,6 @@
             </div>
         </section>
 
-        <section id="day2" class="day-section">
-            <div class="top-info">Day 2</div>
-            <h1>鈴鹿賽道・前往大阪</h1>
-            <p class="description">名古屋飯店出發，挑戰鈴鹿賽道，隨後移動至大阪。</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="time">Morning</div>
-                    <div class="event-title">名古屋飯店出發 ➔ 搭乘地鐵</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="time">Afternoon</div>
-                    <div class="event-title">鈴鹿賽道 (Suzuka Circuit)</div>
-                    <div class="btn-group">
-                        <a href="https://www.suzukacircuit.jp/" target="_blank" class="action-link">🔗 官方網站</a>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="time">Evening</div>
-                    <div class="event-title">移動至大阪飯店</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="day3" class="day-section">
-            <div class="top-info">Day 3</div>
-            <h1>宇治包車自由行</h1>
-            <p class="description">大阪出發，包車前往宇治感受抹茶之鄉。</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="event-title">大阪包車出發</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="event-title">宇治景點遊覽</div>
-                    <p style="color:var(--text-secondary); font-size: 14px; margin-top:5px;">推薦：平等院、宇治川</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="day4" class="day-section">
-            <div class="top-info">Day 4</div>
-            <h1>重返鈴鹿賽道 (Day 4)</h1>
-            <p class="description">大阪飯店出發，再次前往鈴鹿賽道。</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="event-title">大阪飯店出發 ➔ 鈴鹿賽道</div>
-                    <p style="color:var(--accent-gold); font-size: 13px; margin-top:5px;">⚠️ 交通工具未定</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="day5" class="day-section">
-            <div class="top-info">Day 5</div>
-            <h1>重返鈴鹿賽道 (Day 5)</h1>
-            <p class="description">大阪飯店出發，最後衝刺鈴鹿賽道行程。</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="event-title">大阪飯店出發 ➔ 鈴鹿賽道</div>
-                    <p style="color:var(--accent-gold); font-size: 13px; margin-top:5px;">⚠️ 交通工具未定</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="day6" class="day-section">
-            <div class="top-info">Day 6</div>
-            <h1>大阪 ➔ 關西機場</h1>
-            <p class="description">旅程結束，前往機場搭機返家。</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="event-title">大阪 ➔ 關西機場 (KIX)</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
+        </main>
 </body>
 </html>
