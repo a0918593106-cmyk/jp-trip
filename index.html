@@ -15,184 +15,33 @@
             --text-secondary: #a1a1a6;
             --border-color: rgba(255, 255, 255, 0.1);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* --- 左側導覽：更窄更精緻 --- */
-        .sidebar {
-            width: 70px;
-            background-color: var(--sidebar-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 30px;
-            border-right: 1px solid var(--border-color);
-            overflow-y: auto;
-            flex-shrink: 0;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: 0.3s;
-            width: 100%;
-            opacity: 0.6;
-        }
-
-        .nav-item:active { opacity: 1; color: var(--accent-gold); }
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 70px; background-color: var(--sidebar-color); display: flex; flex-direction: column; align-items: center; padding-top: 30px; border-right: 1px solid var(--border-color); overflow-y: auto; flex-shrink: 0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; color: var(--text-secondary); text-decoration: none; transition: 0.3s; width: 100%; opacity: 0.6; }
+        .nav-item:hover, .nav-item:active { opacity: 1; color: var(--accent-gold); }
         .nav-icon { font-size: 18px; margin-bottom: 5px; }
         .nav-day { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
-
-        /* --- 右側內容：分頁感強化 --- */
-        .content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            scroll-behavior: smooth;
-        }
-
-        .day-section {
-            min-height: 90vh; /* 讓每一天都有足夠空間感 */
-            padding: 20px 0 60px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        /* 精緻標籤：Day 1 氣泡 */
-        .day-label {
-            display: inline-block;
-            background: #d4a373;
-            color: #1a1a1a;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
+        .content { flex: 1; overflow-y: auto; padding: 20px; scroll-behavior: smooth; }
+        .day-section { min-height: 90vh; padding: 20px 0 60px 0; border-bottom: 1px solid var(--border-color); }
+        .day-label { display: inline-block; background: var(--accent-gold); color: #1a1a1a; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
         h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-
-        /* 修飾過的字體區塊：標籤包圍框 */
-        .pills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-
-        .pill {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 5px 15px;
-            border-radius: 50px; /* 完美圓角 */
-            font-size: 13px;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-        }
-
-        .pill i { margin-right: 5px; font-style: normal; }
-
-        /* 導遊小撇步：加上裝飾線框 */
-        .tip-box {
-            background: rgba(212, 163, 115, 0.1);
-            border: 1px solid var(--accent-gold);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .tip-box::before {
-            content: "💡";
-            position: absolute;
-            top: -12px;
-            left: 15px;
-            background: var(--bg-color);
-            padding: 0 5px;
-        }
-
-        /* 時間軸：點與線的精細化 */
-        .timeline {
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            padding-left: 20px;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -25px;
-            top: 10px;
-            bottom: -40px;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
+        .pills-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; }
+        .pill { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); padding: 5px 15px; border-radius: 50px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; }
+        .tip-box { background: rgba(212, 163, 115, 0.1); border: 1px solid var(--accent-gold); padding: 15px; border-radius: 12px; margin-bottom: 30px; position: relative; }
+        .timeline { position: relative; padding-left: 25px; }
+        .timeline-item { position: relative; margin-bottom: 40px; padding-left: 20px; }
+        .timeline-item::before { content: ""; position: absolute; left: -25px; top: 10px; bottom: -40px; width: 1px; background: rgba(255, 255, 255, 0.1); }
         .timeline-item:last-child::before { display: none; }
-
-        .timeline-dot {
-            position: absolute;
-            left: -31px;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            border: 3px solid var(--bg-color);
-            box-shadow: 0 0 10px rgba(212, 163, 115, 0.4);
-        }
-
+        .timeline-dot { position: absolute; left: -31px; top: 8px; width: 12px; height: 12px; background: var(--accent-gold); border-radius: 50%; border: 3px solid var(--bg-color); }
         .time { font-size: 14px; color: var(--accent-gold); margin-bottom: 5px; font-weight: 500; }
         .event-title { font-size: 18px; font-weight: 500; margin-bottom: 10px; }
-
-        /* 按鈕：精緻小按鈕樣式 */
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-size: 12px;
-            margin-right: 8px;
-            transition: 0.2s;
-        }
-
-        .action-btn:active { background: var(--accent-gold); color: black; }
-
-        /* 工具箱卡片樣式優化 */
+        .action-btn { display: inline-flex; align-items: center; padding: 6px 14px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: white; text-decoration: none; font-size: 12px; margin-right: 8px; }
         .toolbox { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
-        .tool-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 15px;
-            text-decoration: none;
-            text-align: center;
-        }
+        .tool-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 15px; text-decoration: none; text-align: center; color: white; }
     </style>
 </head>
 <body>
-
     <nav class="sidebar">
         <a href="#tools" class="nav-item"><div class="nav-icon">🛠️</div><div class="nav-day">TOOLS</div></a>
         <a href="#day1" class="nav-item"><div class="nav-icon">🏨</div><div class="nav-day">DAY 1</div></a>
@@ -202,42 +51,36 @@
         <a href="#day5" class="nav-item"><div class="nav-icon">🚗</div><div class="nav-day">DAY 5</div></a>
         <a href="#day6" class="nav-item"><div class="nav-icon">✈️</div><div class="nav-day">DAY 6</div></a>
     </nav>
-
     <main class="content">
         <section id="tools" class="day-section" style="min-height: auto;">
             <h1 style="font-size: 22px; margin-bottom: 20px;">旅程小工具</h1>
             <div class="toolbox">
-                <a href="https://www.google.com/search?q=名古屋+天氣" target="_blank" class="tool-card"><span>🌤️</span><p style="color:white; font-size:13px; margin-top:5px;">名古屋天氣</p></a>
-                <a href="https://www.google.com/search?q=JPY+to+TWD" target="_blank" class="tool-card"><span>💴</span><p style="color:white; font-size:13px; margin-top:5px;">即時匯率</p></a>
+                <a href="https://www.google.com/search?q=名古屋+天氣" target="_blank" class="tool-card"><span>🌤️</span><p style="font-size:13px; margin-top:5px;">名古屋天氣</p></a>
+                <a href="https://www.google.com/search?q=JPY+to+TWD" target="_blank" class="tool-card"><span>💴</span><p style="font-size:13px; margin-top:5px;">即時匯率</p></a>
             </div>
         </section>
-
         <section id="day1" class="day-section">
             <div class="day-label">Day 1 · 名古屋</div>
-            <h1>抵達與休整</h1>
+            <h1>抵達與飯店進駐</h1>
             <div class="pills-container">
-                <div class="pill"><i>🍱</i> 必吃：手羽先</div>
-                <div class="pill"><i>🏨</i> 入住飯店</div>
-            </div>
-            <div class="tip-box">
-                <p style="font-size: 14px; color: #eee;">記得先在機場購買名鐵特急券，到市區最快只要 28 分鐘。</p>
+                <div class="pill">🍱 必吃：手羽先</div>
+                <div class="pill">🏨 名古屋飯店</div>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="time">Check-in</div>
                     <div class="event-title">名古屋飯店辦理入住</div>
-                    <a href="#" class="action-btn">📍 導航</a>
+                    <a href="https://www.google.com/maps" target="_blank" class="action-btn">📍 導航</a>
                 </div>
             </div>
         </section>
-
         <section id="day2" class="day-section">
-            <div class="day-label">Day 2 · 鈴鹿賽道</div>
-            <h1>賽道挑戰日</h1>
+            <div class="day-label">Day 2 · 名古屋 ➔ 大阪</div>
+            <h1>鈴鹿賽道挑戰</h1>
             <div class="pills-container">
-                <div class="pill"><i>🏎️</i> 鈴鹿賽道</div>
-                <div class="pill"><i>🚄</i> 移動至大阪</div>
+                <div class="pill">🏎️ 鈴鹿賽道</div>
+                <div class="pill">🚇 地鐵移動</div>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
@@ -248,11 +91,10 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="time">Evening</div>
-                    <div class="event-title">移動至大阪飯店</div>
+                    <div class="event-title">前往大阪飯店</div>
                 </div>
             </div>
         </section>
-
-        </main>
+    </main>
 </body>
 </html>
